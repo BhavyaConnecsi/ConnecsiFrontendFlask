@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+
+    <style>
+        body{
+               // background-image:url('/static/img/services.png');
+               // background-size:cover;
+
+        }
+        .login{
+                margin-top: 50px;
+        }
+        .login .card{
+                background:rgba(0,0,0,.6);
+        }
+        .login label{
+                font-size:10px;
+                color:#ccc;
+        }
+        .login input{
+                font-size:14px !important;
+                color:#fff;
+        }
+
+    </style>
+    <!-- jquery function for initializing login tabs -->
+    <script>
+            $(document).ready(function(){
+                $('.tabs').tabs({swipeable: true});
+                $('.sidenav').sidenav();
+                $('.collapsible').collapsible();
+                $(".dropdown-trigger").dropdown({hover:true});
+
+            });
+    </script>
+    <script charset="utf-8" type="text/javascript">
+        function check(Form_Name, password,confirm_password)
+        {
+            var pass1 = document.getElementById(password).value;
+            var pass2 = document.getElementById(confirm_password).value;
+            if(pass2 != pass1){
+
+                M.toast({html: 'Password Doesnt Match.'})
+                return false;
+            }
+
+        }
+    </script>
+
+</head>
+<body>
+
+    <div class="container">
+
+
+        {% include 'includes/_flash_messages.html' %}
+        {% block body %}{% endblock %}
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+</body>
+</html>

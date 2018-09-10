@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+{{ super() }}
+{% block body %}
+<title xmlns="http://www.w3.org/1999/html">{{title}}</title>
+<!--
+<div class="row login">
+    <div class="col s12 l4 offset-l4">
+        <div class="card">
+            <div class="card-action red white-text">
+                <h3>Login</h3>
+            </div>
+            <div class="card-content">
+                <div class="form-field">
+                    <label for="username">Username</label>
+                    <input type="text" id="username">
+                </div><br/>
+                <div class="form-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password">
+                </div><br/>
+                <div class="form-field center-align">
+                    <button class="btn-large red hoverable">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<div class="row login">
+    <div class="col s12 l4 offset-l4">
+        <div class="card">
+            <div class="card-action white white-text">
+                <img src="/static/img/logo.png" class="responsive-img">
+            </div>
+            <ul class="tabs">
+                <li class="tab col s6"><a class="active" href="#brand">Brand</a></li>
+                <li class="tab col s6"><a href="#influencer">Influencer</a></li>
+            </ul>
+            <div id="brand" class="card-content">
+                <form method="POST" action="/login">
+                <div class="form-field">
+                    <input type="email" id="email" name="email" class="validate" required placeholder="Email">
+                </div>
+                <br/>
+                <div class="form-field">
+                    <input type="password" id="password" name="password" class="validate" required placeholder="Password">
+                </div>
+                <br>
+                <div class="form-field">
+                    <label>
+                    <input type="checkbox" class="filled-in"/>
+                    <span>Remember me</span>
+                </label>
+                </div>
+                    <br>
+                <div class="form-field center-align">
+                    <button class="btn-small purple hoverable" type="submit" name="brand">Login</button>
+                </div>
+                </form>
+                <br/>
+                <div class="divider"></div>
+                <br>
+                <div class="white-text center-align">Dont have an Account yet ?</div>
+                <br>
+                <div class="center-align">
+                    <a class="btn-small red hoverable" href="/registerBrand">Free Registration</a>
+                </div>
+            </div>
+            <div id="influencer" class="card-content">
+                <form method="POST" action="/login">
+                <div class="form-field">
+                    <input type="text" id="inf_email_id" class="validate" required placeholder="Username">
+                </div>
+                <br/>
+                <div class="form-field">
+                    <input type="password" id="inf_password" class="validate" required placeholder="Password">
+                </div>
+                <br/>
+                <div class="form-field center-align">
+                    <button class="btn-small purple hoverable" type="submit" name="influencer">Login</button>
+                </div>
+                </form>
+                <br/>
+                <div class="center-align">
+                    <a class="btn-small red hoverable" href="/registerInfluencer">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+

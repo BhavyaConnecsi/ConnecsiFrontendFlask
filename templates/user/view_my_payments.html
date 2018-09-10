@@ -1,0 +1,40 @@
+{% extends 'dashboard_layout_new.html' %}
+{{ super() }}
+{% block body %}
+
+<div class="container">
+    <div  class="section">
+        <div class="row">
+            <div class="col s12">
+                <h4 class="header">View My Payments</h4>
+                <div class="card-panel">
+                    <table class="responsive-table striped centered">
+                        <thead>
+                        <th>Invoice Id</th>
+                        <th>Date</th>
+                        <th>Receiver</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                        </thead>
+                        <tbody>
+                        {% for item in data %}
+                        <tr>
+                            <td>{{ item[0] }}</td>
+                            <td>{{ item[1] }}</td>
+                            <td>{{ item[2] }}</td>
+                            <td>{{ item[4] }}</td>
+                            <td>{{ item[3] }}</td>
+                            <td><a href="generateInvoice" class="btn hoverable"> Generate Invoice</a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,47 @@
+
+{% extends 'layout.html' %}
+{% block body %}
+<div class="row login">
+    <div class="col s12 l4 offset-l4">
+        <div class="card">
+            <div class="card-action red white-text">
+                <h6>Connecsi Login Panel</h6>
+            </div>
+            <ul class="tabs">
+                <li class="tab col s6"><a href="#brand">Brand</a></li>
+                <li class="tab col s6"><a class="active" href="#influencer">Influencer</a></li>
+            </ul>
+            <div id="brand" class="card-content">
+                <div class="form-field">
+                    <label for="username1">Username</label>
+                    <input type="text" id="username1">
+                </div>
+                <br/>
+                <div class="form-field">
+                    <label for="password1">Password</label>
+                    <input type="password" id="password1">
+                </div>
+                <br/>
+                <div class="form-field center-align">
+                    <button class="btn-large red hoverable">Login</button>
+                </div>
+            </div>
+            <div id="influencer" class="card-content">
+                <div class="form-field">
+                    <label for="username2">Username</label>
+                    <input type="text" id="username2">
+                </div>
+                <br/>
+                <div class="form-field">
+                    <label for="password2">Password</label>
+                    <input type="password" id="password2">
+                </div>
+                <br/>
+                <div class="form-field center-align">
+                    <button class="btn-large red hoverable">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

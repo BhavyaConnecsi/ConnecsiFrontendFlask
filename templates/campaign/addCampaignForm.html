@@ -1,0 +1,139 @@
+{% extends 'dashboard_layout_new.html' %}
+{{ super() }}
+{% block body %}
+
+<div class="container">
+    <div  class="section">
+        <div class="row">
+            <h4 class="header">Add New Campaign</h4>
+            <div class="card-panel col s12">
+                <form class="form" name="campaign_form" id="campaign_form" method="POST" action="saveCampaign">
+                <div class="col s6">
+                    <div class="col s6">
+                        <input class="form-field" type="text" name="campaign_name" id="campaign_name" placeholder="Campaign Name">
+                    </div>
+                    <div class="col s3">
+                        <input type="text" class="datepicker" name="from_date" placeholder="From">
+                    </div>
+                    <div class="col s3">
+                        <input type="text" class="datepicker" name="to_date" placeholder="To">
+                    </div>
+                    <div class="col s4">
+                        <input type="text" id="budget" name="budget" placeholder="Budget">
+                    </div>
+                    <div class="col s4">
+                        <select name="currency" id="currency">
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="INR">INR</option>
+                        </select>
+                    </div>
+                    <div class="col s4">
+                        <select multiple id="channel" name="channel">
+                            <option value="" disabled selected>Channels</option>
+                            <option value="Youtube">Youtube</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Twitter">Twitter</option>
+                        </select>
+                    </div>
+                    <div class="col s5">
+                        <select multiple id="region" name="region">
+                            <option value="" disabled selected>Regions</option>
+                            {% for item in region_codes %}
+                            <option value="{{ item[0] }}">{{ item[1] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-field col s7">
+                        <span>Followers</span>
+                        <div><br></div>
+                        <div id="test-slider"></div>
+                    </div>
+                    <input type="hidden" name="min_lower" value="" id="min_lower">
+                    <input type="hidden" name="max_upper" value="" id="max_upper">
+                    <div class="col s12">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file" multiple id="files" name="files">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <select id="video_cat" name="video_cat">
+                            <option>Choose Category</option>
+                            {% for item in video_categories %}
+                            <option value="{{ item[0] }}">{{ item[1] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col s12">
+                        <input type="url" id="target_url" name="target_url" placeholder="Target Url">
+                    </div>
+                </div>
+
+                <div class="col s6">
+                    <div class="col s12">
+                        <textarea class="materialize-textarea" name="campaign_description" placeholder="Description"></textarea>
+                    </div>
+                    <div class="col s12">
+                        <select multiple id="arrangements" name="arrangements">
+                            <option value="" disabled selected>Arrangements / Content Type</option>
+                            <option value="1">Review</option>
+                            <option value="2">Unboxing / Gameplay</option>
+                            <option value="3">Shout out/Mention</option>
+                            <option value="4">giveaway</option>
+                            <option value="5">video Intro/Outro</option>
+                            <option value="6">Tutorial</option>
+                            <option value="7">Banner placement / URL placement</option>
+                            <option value="8">Sponsorship</option>
+                            <option value="9">Other (Explain in description)</option>
+                        </select>
+                    </div>
+                    <div class="col s12">
+                        <select name="kpis" id="kpis">
+                            <option>KPIs</option>
+                            <option value="No of Clicks">No of Clicks</option>
+                            <option value="New Users">New Users</option>
+                            <option value="Revenue Generated">Revenue Generated</option>
+                        </select>
+                    </div>
+                    <div class="col s4">
+                        <button class="btn" type="submit" id="save">Save</button>
+                    </div>
+                </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var slider = document.getElementById('test-slider');
+    noUiSlider.create(slider, {
+       {% if min_lower and max_upper %}
+       start: [{{ min_lower }}, {{ max_upper }}],
+       {% else %}
+       start: [0,10000000],
+       {% endif %}
+       connect: true,
+       step: 1,
+       orientation: 'horizontal', // 'horizontal' or 'vertical'
+       range: {
+         'min': 0,
+         'max': 10000000
+       },
+       format: wNumb({
+         decimals: 0
+       })
+    });
+</script>
+
+{% endblock %}
+

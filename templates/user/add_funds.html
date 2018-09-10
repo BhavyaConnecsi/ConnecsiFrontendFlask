@@ -1,0 +1,30 @@
+{% extends 'dashboard_layout_new.html' %}
+{{ super() }}
+{% block body %}
+
+<div class="container">
+    <div  class="section">
+        <div class="row">
+            <div class="col s12 m4 l6">
+                <h4 class="header">Add Funds</h4>
+                <form action="/saveFunds" method="POST">
+                    <div class="col s12 center card-panel">
+                        <div class="form-field">
+                            <input type="number" name="amount" id="amount" placeholder="Amonunt">
+                        </div>
+                        <div class="form-field">
+                            <input type="text" name="description" id="description" placeholder="Description">
+                        </div>
+                        <div class="form-field center-align">
+                            <button class="waves-effect waves-light btn hoverable" type="submit">Add</button>
+                        </div>
+                        <br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

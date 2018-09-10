@@ -1,0 +1,206 @@
+{% extends 'dashboard_layout_new.html' %}
+{{ super() }}
+{% block body %}
+<head>
+    <style>
+    .text-field {
+    -moz-box-sizing: border-box;
+    border: 1px solid #EEEEEE;
+    font-family: "Source Sans Pro",Arial,sans-serif;
+    font-size: 0.73684em;
+    font-weight: 600;
+    height: 37px;
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+}
+.autocomplete-suggestion {
+    overflow: hidden;
+    padding: 2px 5px;
+    white-space: nowrap;
+    background-color:white;
+    <!--max-width:500px;-->
+    <!--margin: auto;-->
+    <!--border: 3px solid #73AD21;-->
+}
+@media only screen and (max-width: 450px){
+    .autocomplete-suggestion { width: 80%; }
+}
+
+.autocomplete-suggestions strong {
+    color: #3399FF;
+    font-weight: normal;
+
+}
+.autocomplete-selected{
+  background-color:#F0F0F0;
+}
+    </style>
+
+</head>
+
+<title xmlns="http://www.w3.org/1999/html">{{title}}</title>
+<div class="container">
+    <div class="" id="search_bar">
+        <div class="row">
+            <div class="card-panel" >
+                <div class="row">
+                    <!--<H6 class="header">Search Influencers</H6>-->
+                    <form class="col s12" action="/searchInfluencers" method="POST">
+                        <div class="row">
+                            <div class="form-field col s6">
+                                <input id="string_word" name="string_word" type="text" placeholder="Search Category"
+                                       {% if string_word %}
+                                       value="{{ string_word }}"
+                                       {% endif %}
+                                >
+                                <!--<div class="input-field col s12">
+                                    <input type="text" id="autocomplete-input" class="autocomplete">
+                                    <label for="autocomplete-input">Autocomplete</label>
+                                </div>-->
+                            </div>
+                            <div class="form-field col s6">
+                                <span>Followers</span>
+                                <div><br></div>
+                                <div id="test-slider"></div>
+                            </div>
+                            <input type="hidden" name="min_lower" value="" id="min_lower">
+                            <input type="hidden" name="max_upper" value="" id="max_upper">
+
+                        </div>
+                        <div class="row">
+                            <div class="form-field col s4">
+                                <select id="select_channel" name="select_channel" class="icons">
+                                    {% if channel %}
+                                    <option value="{{ channel }}">{{ channel }}</option>
+                                    {% endif %}
+                                    <option value="Youtube">Youtube</option>
+                                    <option value="Facebook">Facebook</option>
+                                    <option value="Twitter">Twitter</option>
+                                    <option value="Instagram">Instagram</option>
+                                </select>
+                                <label>Select Channel</label>
+                            </div>
+                            <div class="form-field col s4">
+                                <select id="select_country" name="select_country">
+                                    {% if country %}
+                                    <option value="{{ country }}">{{ country }}</option>
+                                    {% else %}
+                                    <option value="" disabled selected>Select Country</option>
+                                    {% endif %}
+                                    {% for item in region_codes %}
+                                    <option value="{{ item[0] }}">{{ item[1] }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label>Select Country</label>
+                            </div>
+                            <div class="form-field col s4">
+                                <select id="sort" name="sort">
+                                    {% if channel %}
+                                    <option value="{{ sort_order }}">{{ sort_order }}</option>
+                                    {% endif %}
+                                    <option value="High To Low">High To Low</option>
+                                    <option value="Low To High">Low To High</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-field col s12">
+                                <button class="btn cyan waves-effect waves-light left" id="btn-search-inf" type="submit" name="search_inf">Search
+                                    <i class="mdi-content-search right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        {% for item in data %}
+    <div class="card-panel" id="myTable">
+        <div class="row">
+            <div class="col s1 "><img src="{{item[2]}}" class="circle responsive-img"></div>
+            <div class="col s6 truncate card-panel #e3f2fd blue lighten-5"><b>{{item[1]}}</b></div>
+            <div class="col s6 #e3f2fd blue lighten-5 card-panel">
+                <table class="responsive-table striped centered">
+                    <thead>
+                    <tr>
+                        <th>Total Followers</th>
+                        <th>Avg Views</th>
+                        <th>Avg Likes</th>
+                        <th>Avg Comments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{item[4]}}</td>
+                        <td>{{(item[7]/100)|int}}</td>
+                        <td>{{(item[9]/100)|int}}</td>
+                        <td>{{(item[11]/100)|int}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Message"><i class="small mdi-communication-quick-contacts-mail blue-text"></i></a>
+                            <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Add to Campaign"><i class="small mdi-content-add-circle pink-text"></i></a>
+                            <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Add to Watch list"><i class="small mdi-image-remove-red-eye blue-text"></i></a>
+                            <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Add to Favourites"><i class="small mdi-action-stars purple-text"></i></a>
+                            <b>Other Channels</b>
+                            {% if item[13] %}
+                                <a href="{{ item[13] }}"><img src="/static/img/facebook 24.png"></a>
+                            {% endif %}
+                            {% if item[14] %}
+                                <a href="{{ item[14] }}"><img src="/static/img/instagram.png"></a>
+                            {% endif %}
+                            {% if item[15] %}
+                                <a href="{{ item[15] }}"><img src="/static/img/twitter.png"></a>
+                            {% endif %}
+
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+        {% endfor %}
+
+
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+
+    var slider = document.getElementById('test-slider');
+    noUiSlider.create(slider, {
+       {% if min_lower and max_upper %}
+       start: [{{ min_lower }}, {{ max_upper }}],
+       {% else %}
+       start: [0,10000000],
+       {% endif %}
+       connect: true,
+       step: 1,
+       orientation: 'horizontal', // 'horizontal' or 'vertical'
+       range: {
+         'min': 0,
+         'max': 10000000
+       },
+       format: wNumb({
+         decimals: 0
+       })
+    });
+</script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.24/jquery.autocomplete.min.js"></script>
+<script>
+   a1 = $('#string_word').autocomplete({
+         width: 348,
+         delimiter: /(,|;)\s*/,
+         lookup: '{{ lookup_string }}'.split(',')
+      });
+
+</script>
+
+{% endblock %}
+
