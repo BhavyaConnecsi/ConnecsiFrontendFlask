@@ -1,0 +1,128 @@
+{% extends 'dashboard_layout_new.html' %}
+{{ super() }}
+{% block body %}
+<div class="row" style="justify-content: center">
+  <div class="col-xl-12 col-lg-12  col-md-12 col-12">
+    <div class="card gradient-dracula">
+      <div class="card-body" style="padding: 12px">
+
+        <div class="form-body">
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+              <div class="form-group">
+                <ng-template #rt let-r="result" let-t="term">
+                  <ngb-highlight [result]="r.video_cat_name"  [term]="t"></ngb-highlight>
+                </ng-template>
+                <input id="typeahead-focus" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search"
+                  (focus)="focus$.next($event.target.value)" (selectItem)="selectedItem($event)" [inputFormatter]="formatter" placeholder="Enter Keywords"
+                  [disabled]="!searchAllowed" [resultTemplate]="rt" (click)="click$.next($event.target.value)"
+                  #instance="ngbTypeahead" />
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+              <div class="form-group">
+                <label for="disabledInput">Channel</label>
+                <div class="form-group">
+                  <select class="form-control" (change)="selectChangeHandler($event)">
+                    <option value="facebook">Facebook</option>
+                    <option value="twitter">Twitter</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="youtube">Youtube</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+              <div class="form-group">
+                <label for="disabledInput">Country</label>
+                <div class="form-group">
+                  <select class="form-control" (change)="selectCountryChangeHandler($event)" >
+                    <option *ngFor="let country of countries" value="{{country.region_code}}">{{country.country_name}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+              <div class="form-group">
+                <label>Followers</label>
+                  <div id="test-slider"></div>
+                <!--<range-slider #div  min="0" max="25000" minValue="0" maxValue="25000" step="10">-->
+                <!--</range-slider>-->
+              </div>
+                <input type="hidden" name="min_lower" value="" id="min_lower">
+                <input type="hidden" name="max_upper" value="" id="max_upper">
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+              <div class="form-group spacing">
+                <button type="button" (click)="searchVideo()" class="btn btn-raised btn-raised btn-primary customButton">
+                  <i class="fa fa-search"></i> Search
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-md-12 mb-1 col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="px-3 py-3">
+          <div class="media">
+            <div class="media-body text-left">
+              <h3 class="mb-1 danger">278</h3>
+              <span>New Projects</span>
+            </div>
+            <div class="media-right align-self-center">
+              <i class="icon-rocket danger font-large-2 float-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+    var slider = document.getElementById('test-slider');
+    noUiSlider.create(slider, {
+       {% if min_lower and max_upper %}
+       start: [{{ min_lower }}, {{ max_upper }}],
+       {% else %}
+       start: [0,1000],
+       {% endif %}
+       connect: true,
+       step: 1,
+       orientation: 'horizontal', // 'horizontal' or 'vertical'
+       range: {
+         'min': 0,
+         'max': 1000
+       },
+       format: wNumb({
+         decimals: 0
+       })
+    });
+</script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.24/jquery.autocomplete.min.js"></script>
+<script>
+   a1 = $('#string_word').autocomplete({
+         width: 348,
+         delimiter: /(,|;)\s*/,
+         lookup: '{{ lookup_string }}'.split(',')
+      });
+
+</script>
+
+{% endblock %}

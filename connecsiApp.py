@@ -140,38 +140,58 @@ def admin():
     return render_template('index.html',title=title)
 #
 #
-# @connecsiApp.route('/profileView')
-# @is_logged_in
-# def profileView():
-#     title='Profile View'
-#     type = session['type']
-#     user_id = session['user_id']
-#     if type == 'brand':
-#         table_name = 'users_brands'
-#     else:
-#         table_name = 'users_inf'
-#     connecsiObj = ConnecsiModel()
-#     data = connecsiObj.get_user_by_user_id(table_name=table_name,user_id=str(user_id))
-#     print(data)
-#     return render_template('user/user-profile-page.html',data=data,title=title)
-#
-# @connecsiApp.route('/searchInfluencers',methods=['POST','GET'])
-# @is_logged_in
-# def searchInfluencers():
-#     connecsiObj = ConnecsiModel()
-#     region_codes = connecsiObj.get__(table_name='youtube_region_codes', STAR='*')
+@connecsiApp.route('/profileView')
+@is_logged_in
+def profileView():
+    title='Profile View'
+    type = session['type']
+    user_id = session['user_id']
+    if type == 'brand':
+        url = base_url + 'Brand/'+str(user_id)
+        try:
+            response = requests.get(url)
+            # print(response.json())
+            data_json = response.json()
+            print(data_json)
+            return render_template('user/user-profile-page.html', data=data_json, title=title)
+        except Exception as e:
+            print(e)
+    else:
+        table_name = 'users_inf'
+
+
+
+@connecsiApp.route('/searchInfluencers',methods=['POST','GET'])
+@is_logged_in
+def searchInfluencers():
 #     video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
-#     lookup_string = ''
-#     for cat in video_categories:
-#         lookup_string += ''.join(',' + cat[1])
-#     lookup_string = lookup_string.replace('&', 'and')
-#     if request.method=='POST':
-#         if 'search_inf' in request.form:
-#             string_word = request.form.get('string_word')
-#             # print(string_word)
-#             category = string_word.replace('and','&')
-#             # print(category)
-#             category_id=''
+    url_regionCodes = base_url + 'Youtube/regionCodes'
+    try:
+        response_regionCodes = requests.get(url=url_regionCodes)
+        regionCodes_json = response_regionCodes.json()
+        print(regionCodes_json['data'])
+
+    except Exception as e:
+        print(e)
+    url_videoCat = base_url + 'Youtube/videoCategories'
+    try:
+        response_videoCat = requests.get(url=url_videoCat)
+        videoCat_json = response_videoCat.json()
+        print(videoCat_json['data'])
+    except Exception as e:
+        print(e)
+    return render_template('search/searchInfluencers.html',country=regionCodes_json)
+    # lookup_string = ''
+    # for cat in video_categories:
+    #     lookup_string += ''.join(',' + cat[1])
+    # lookup_string = lookup_string.replace('&', 'and')
+    # if request.method=='POST':
+    #     if 'search_inf' in request.form:
+    #         string_word = request.form.get('string_word')
+    #         print(string_word)
+    #         category = string_word.replace('and','&')
+            # print(category)
+            # category_id=''
 #             try:
 #                 category_details = connecsiObj.get__(table_name='youtube_video_categories',STAR='*',WHERE='WHERE',compare_column='video_cat_name',compare_value=category)
 #                 category_id = category_details[0][0]
@@ -303,7 +323,7 @@ def admin():
 # def email():
 #     return render_template('email/email.html')
 
-        # @connecsiApp.route('/login/authorized')
+# @connecsiApp.route('/login/authorized')
 # def authorized():
 #     resp = linkedin.authorized_response()
 #     if resp is None:
