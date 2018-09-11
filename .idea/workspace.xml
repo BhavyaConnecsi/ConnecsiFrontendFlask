@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c7b20242-635e-40ff-a974-c7ab7a627102" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/connecsiAdminMaterialFrontend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/connecsiAdminMaterialFrontend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connecsiApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/connecsiApp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/includes/_navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/_navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/user-profile-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/user-profile-page.html" afterDir="false" />
-    </list>
+    <list default="true" id="c7b20242-635e-40ff-a974-c7ab7a627102" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,10 +50,24 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="1" />
+          <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.39" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.file.types.edit" />
+      <usages-collector id="statistics.file.extensions.edit" />
     </session>
   </component>
   <component name="FileEditorManager">
@@ -68,13 +75,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/connecsiApp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="-2533">
               <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/user/edit-profile-page.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1309" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/campaign/addCampaignForm.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="213">
@@ -180,34 +194,34 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="PythonFlaskFrontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PythonFlaskFrontend" type="462c0819:PsiDirectoryNode" />
+              <item name="ConnecsiFrontendFlask" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ConnecsiFrontendFlask" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="PythonFlaskFrontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PythonFlaskFrontend" type="462c0819:PsiDirectoryNode" />
+              <item name="ConnecsiFrontendFlask" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ConnecsiFrontendFlask" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="PythonFlaskFrontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PythonFlaskFrontend" type="462c0819:PsiDirectoryNode" />
+              <item name="ConnecsiFrontendFlask" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ConnecsiFrontendFlask" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="PythonFlaskFrontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PythonFlaskFrontend" type="462c0819:PsiDirectoryNode" />
+              <item name="ConnecsiFrontendFlask" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ConnecsiFrontendFlask" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="campaign" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -273,7 +287,7 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14145234" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14372164" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -313,13 +327,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/dashboard_layout.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/connecsiApp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/dashboard_layout_new.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -374,6 +381,18 @@
         <state relative-caret-position="213">
           <caret line="121" column="17" selection-start-line="121" selection-start-column="17" selection-end-line="121" selection-end-column="17" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/connecsiApp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2533">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/edit-profile-page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1309" />
       </provider>
     </entry>
   </component>
