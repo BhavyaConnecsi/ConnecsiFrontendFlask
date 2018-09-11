@@ -12,7 +12,7 @@
                     <div class="col-5">
                         <div class="align-self-start halfway-fab pl-3 pt-2">
                             <div class="text-left">
-                                <h3 class="card-title white">Jose Diaz</h3>
+                                <h3 class="card-title white"> {{data['data']['first_name'] }}</h3>
                             </div>
                         </div>
                     </div>
@@ -51,8 +51,8 @@
                             <!--</ul>-->
                         </div>
                         <div class="col-lg-2 col-md-2 text-center">
-                            <span class="font-medium-2 text-uppercase">Jose Diaz</span>
-                            <p class="grey font-small-2">Ninja Developer</p>
+                            <span class="font-medium-2 text-uppercase">{{data['data']['first_name'] }} {{data['data']['last_name'] }}</span>
+                            <p class="grey font-small-2">{{data['data']['role'] }}</p>
                         </div>
                         <div class="col-lg-5 col-md-5">
                             <!--<ul class="profile-menu no-list-style">-->
@@ -88,57 +88,120 @@
                 <div class="card-body">
                     <div class="card-block">
                         <div class="mb-3">
-                            <span class="text-bold-500 primary">About:</span>
-                            <span class="display-block overflow-hidden">About Company text
-                            </span>
+                            <span class="text-bold-500 primary">About Me</span>
+
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-12 col-md-6 col-lg-4">
                                 <ul class="no-list-style">
                                     <li class="mb-2">
-                                        <span class="text-bold-500 primary"><a><i class="icon-present font-small-3"></i> Birthday:</a></span>
-                                        <span class="display-block overflow-hidden">June 10th, 1988</span>
+                                        <span class="text-bold-500 primary"><a><i class="icon-present font-small-3"></i> Name:</a></span>
+                                        <span class="display-block overflow-hidden">{{data['data']['first_name'] }} {{data['data']['last_name'] }} </span>
                                     </li>
                                     <li class="mb-2">
-                                        <span class="text-bold-500 primary"><a><i class="ft-map-pin font-small-3"></i> Birthplace:</a></span>
-                                        <span class="display-block overflow-hidden">New Jersey, USA</span>
+                                        <span class="text-bold-500 primary"><a><i class="ft-map-pin font-small-3"></i> Email:</a></span>
+                                        <span class="display-block overflow-hidden">{{data['data']['email_id'] }}</span>
                                     </li>
                                     <li class="mb-2">
-                                        <span class="text-bold-500 primary"><a><i class="ft-globe font-small-3"></i> Lives in:</a></span>
-                                        <span class="display-block overflow-hidden">Denver, USA</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <ul class="no-list-style">
-                                    <li class="mb-2">
-                                        <span class="text-bold-500 primary"><a><i class="ft-user font-small-3"></i> Gender:</a></span>
-                                        <span class="display-block overflow-hidden">Male</span>
-                                    </li>
-                                    <li class="mb-2">
-                                        <span class="text-bold-500 primary"><a><i class="ft-mail font-small-3"></i> Email:</a></span>
-                                        <a class="display-block overflow-hidden">jose@yourmail.com</a>
-                                    </li>
-                                    <li class="mb-2">
-                                        <span class="text-bold-500 primary"><a><i class="ft-monitor font-small-3"></i> Website:</a></span>
-                                        <a class="display-block overflow-hidden">pixinvent.com</a>
+                                        <span class="text-bold-500 primary"><a><i class="ft-globe font-small-3"></i> Company Name:</a></span>
+                                        <span class="display-block overflow-hidden">{% if data is not none %}
+                                                                                         {{data['data']['company_name']}}
+                                                                                        {% else %}
+                                                                                          NA
+                                                                                            {% endif %}</span>
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-12 col-md-6 col-lg-4">
                                 <ul class="no-list-style">
                                     <li class="mb-2">
-                                        <span class="text-bold-500 primary"><a><i class="ft-smartphone font-small-3"></i> Phone Number:</a></span>
-                                        <span class="display-block overflow-hidden">(012) 345 - 678 - 9910</span>
+                                        <span class="text-bold-500 primary"><a><i class="ft-user font-small-3"></i> Role:</a></span>
+                                        <span class="display-block overflow-hidden">{% if data['data']['role'] == '' %}
+                                                                                    Admin
+                                                                                    {% else %}
+                                                                                    {{ data['data']['role'] }}
+                                                                                    {% endif %}</span>
                                     </li>
                                     <li class="mb-2">
-                                        <span class="text-bold-500 primary"><a><i class="ft-briefcase font-small-3"></i> Occupation:</a></span>
-                                        <span class="display-block overflow-hidden">Ninja Developer</span>
+                                        <span class="text-bold-500 primary"><a><i class="ft-mail font-small-3"></i> Phone:</a></span>
+                                        <a class="display-block overflow-hidden">{% if data['data']['phone'] == '' %}
+                                                                                    NA
+                                                                                    {% else %}
+                                                                                    {{ data['data']['phone'] }}
+                                                                                    {% endif %}</a>
                                     </li>
                                     <li class="mb-2">
-                                        <span class="text-bold-500 primary"><a><i class="ft-book font-small-3"></i> Joined:</a></span>
-                                        <span class="display-block overflow-hidden">April 1st, 2012</span>
+                                        <span class="text-bold-500 primary"><a><i class="ft-monitor font-small-3"></i> URL:</a></span>
+                                        <a class="display-block overflow-hidden">{% if data['data']['url'] == '' %}
+                                                                                    NA
+                                                                                    {% else %}
+                                                                                    {{ data['data']['url'] }}
+                                                                                    {% endif %}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <ul class="no-list-style">
+                                    <li class="mb-2">
+                                        <span class="text-bold-500 primary"><a><i class="ft-smartphone font-small-3"></i> Business Sector:</a></span>
+                                        <span class="display-block overflow-hidden">{% if data['data']['business_sector'] == '' %}
+                                                                                    NA
+                                                                                    {% else %}
+                                                                                    {{ data['data']['business_sector'] }}
+                                                                                    {% endif %}</span>
+                                    </li>
+                                    <li class="mb-2">
+                                        <span class="text-bold-500 primary"><a><i class="ft-briefcase font-small-3"></i> Country:</a></span>
+                                        <span class="display-block overflow-hidden">{% if data['data']['country'] == '' %}
+                                                                                    NA
+                                                                                    {% else %}
+                                                                                    {{ data['data']['country'] }}
+                                                                                    {% endif %}</span>
+                                    </li>
+                                    <li class="mb-2">
+                                        <span class="text-bold-500 primary"><a><i class="ft-book font-small-3"></i> City:</a></span>
+                                        <span class="display-block overflow-hidden">{% if data['data']['city'] == '' %}
+                                                                                    NA
+                                                                                    {% else %}
+                                                                                    {{ data['data']['city'] }}
+                                                                                    {% endif %}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <ul class="no-list-style">
+                                    <li class="mb-2">
+                                        <span class="text-bold-500 primary"><a><i class="ft-smartphone font-small-3"></i> Position:</a></span>
+                                        <span class="display-block overflow-hidden">{% if data['data']['position'] == '' %}
+                                                                                    NA
+                                                                                    {% else %}
+                                                                                    {{ data['data']['position'] }}
+                                                                                    {% endif %}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <ul class="no-list-style">
+                                    <li class="mb-2">
+                                        <span class="text-bold-500 primary"><a><i class="ft-smartphone font-small-3"></i> Monthly Budget:</a></span>
+                                        <span class="display-block overflow-hidden">{% if data['data']['monthly_budget'] == '' %}
+                                                                                    NA
+                                                                                    {% else %}
+                                                                                    {{ data['data']['monthly_budget'] }}
+                                                                                    {% endif %}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <ul class="no-list-style">
+                                    <li class="mb-2">
+                                        <span class="text-bold-500 primary"><a><i class="ft-smartphone font-small-3"></i> No. of Employees:</a></span>
+                                        <span class="display-block overflow-hidden">{% if data['data']['no_of_employees'] == '' %}
+                                                                                    NA
+                                                                                    {% else %}
+                                                                                    {{ data['data']['no_of_employees'] }}
+                                                                                    {% endif %}</span>
                                     </li>
                                 </ul>
                             </div>

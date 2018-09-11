@@ -6,7 +6,7 @@ import requests
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging,jsonify
 # from model.ConnecsiModel import ConnecsiModel
 from passlib.hash import sha256_crypt
-from flask_oauthlib.client import OAuth
+#from flask_oauthlib.client import OAuth
 import os
 
 connecsiApp = Flask(__name__)
@@ -159,6 +159,35 @@ def profileView():
     else:
         table_name = 'users_inf'
 
+
+
+@connecsiApp.route('/editProfile')
+@is_logged_in
+def editProfile():
+    title='Edit Profile'
+    type = session['type']
+    user_id = session['user_id']
+    if type == 'brand':
+        url = base_url + 'Brand/'+str(user_id)
+        try:
+            response = requests.get(url)
+            # print(response.json())
+            data_json = response.json()
+            print(data_json)
+            return render_template('user/edit-profile-page.html', data=data_json, title=title)
+        except Exception as e:
+            print(e)
+    else:
+        table_name = 'users_inf'
+
+@connecsiApp.route('/updateProfile',methods=['GET','POST'])
+@is_logged_in
+def updateProfile():
+    user_id = session['user_id']
+    if request.method == 'POST':
+        url = base_url+ 'Brand/'+str(user_id)
+        payload = request.form.to_dict()
+        print(payload)
 
 
 @connecsiApp.route('/searchInfluencers',methods=['POST','GET'])
