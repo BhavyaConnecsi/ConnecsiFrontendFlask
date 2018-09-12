@@ -13,11 +13,19 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
               <div class="form-group">
+
                 <input class="form-control" id="string_word" name="string_word" type="text" placeholder="Search Category"
                                        {% if string_word %}
                                        value="{{ string_word }}"
                                        {% endif %}
                                 >
+                <ng-template #rt let-r="result" let-t="term">
+                  <ngb-highlight [result]="r.video_cat_name"  [term]="t"></ngb-highlight>
+                </ng-template>
+                <input id="typeahead-focus" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search"
+                       (focus)="focus$.next($event.target.value)" (selectItem)="selectedItem($event)" [inputFormatter]="formatter" placeholder="Enter Keywords"
+                       [disabled]="!searchAllowed" [resultTemplate]="rt" (click)="click$.next($event.target.value)"
+                       #instance="ngbTypeahead" />
               </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
@@ -59,9 +67,13 @@
                   <label>Followers range:</label>
                 </p>
                 <div id="slider"></div>
+                <label>Followers</label>
+                <div id="test-slider"></div>
+                <!--<range-slider #div  min="0" max="25000" minValue="0" maxValue="25000" step="10">-->
+                <!--</range-slider>-->
               </div>
-                <input type="hidden" name="min_lower" value="" id="min_lower">
-                <input type="hidden" name="max_upper" value="" id="max_upper">
+              <input type="hidden" name="min_lower" value="" id="min_lower">
+              <input type="hidden" name="max_upper" value="" id="max_upper">
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
             </div>
@@ -86,12 +98,50 @@
         <div class="px-3 py-3">
           <div class="media">
             <div class="media-body text-left">
-              <h3 class="mb-1 danger">278</h3>
-              <span>New Projects</span>
+              <div class="row">
+              <div class="col"><h4  class="text-center">Influencers on Youtube</h4></div>
+                <div class="col" style="align-items: right; padding-left: 40%;"><button class="text-right">Sort</button></div>
+                </div>
+              <hr>
+              <span>
+                <div class="row">
+                  <div class="col-sm-2">Image</div>
+                  <div class="col-sm-6">Pew Dew Pie<i class="ft-mail font-small-3"></i>
+                    <br>
+                    <br>
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-sm-3" style="border-right: 1px solid #ccc;">Total Followers<br>
+                          5400000
+                        </div>
+                        <div class="col-sm-3" style="border-right: 1px solid #ccc;">Avg<br> Views/video<br>
+                          8090</div>
+                        <div class="col-sm-3" style="border-right: 1px solid #ccc;">Avg<br> Likes/video<br>
+                          3545</div>
+                        <div class="col-sm-3" style="border-right: 1px solid #ccc;">Avg<br> Comments/video<br>
+                          687698</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2"><br>Followers<br>
+                    Graph</div>
+                </div>
+                <br><br>
+                <div class="conatiner">
+                  <div class="row"  style="padding-left: 30%;">
+                    <i class="ft-mail font-small-3"></i>
+                    <i class="ft-mail font-small-3"></i>
+                    <i class="ft-mail font-small-3"></i>
+                    <i class="ft-mail font-small-3"></i>
+                    Other Channels
+                    <i class="ft-mail font-small-3"></i>
+                    <i class="ft-mail font-small-3"></i>
+                  </div>
+                </div>
+
+              </span>
             </div>
-            <div class="media-right align-self-center">
-              <i class="icon-rocket danger font-large-2 float-right"></i>
-            </div>
+
           </div>
         </div>
       </div>
@@ -127,6 +177,33 @@
          decimals: 0
        })
     });
+</script>
+    {% if min_lower and max_upper %}
+    start: [{{ min_lower }}, {{ max_upper }}],
+    {% else %}
+    start: [0,1000],
+    {% endif %}
+    connect: true,
+        step: 1,
+        orientation: 'horizontal', // 'horizontal' or 'vertical'
+        range: {
+        'min': 0,
+            'max': 1000
+    },
+    format: wNumb({
+        decimals: 0
+    })
+    });
+</script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.24/jquery.autocomplete.min.js"></script>
+<script>
+    a1 = $('#string_word').autocomplete({
+        width: 348,
+        delimiter: /(,|;)\s*/,
+        lookup: '{{ lookup_string }}'.split(',')
+    });
+
 </script>
 
 {% endblock %}
