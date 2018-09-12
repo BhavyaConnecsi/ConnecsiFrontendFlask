@@ -193,13 +193,12 @@ def updateProfile():
 @connecsiApp.route('/searchInfluencers',methods=['POST','GET'])
 @is_logged_in
 def searchInfluencers():
-#     video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
     url_regionCodes = base_url + 'Youtube/regionCodes'
+    regionCodes_json=''
     try:
         response_regionCodes = requests.get(url=url_regionCodes)
         regionCodes_json = response_regionCodes.json()
         print(regionCodes_json['data'])
-
     except Exception as e:
         print(e)
     url_videoCat = base_url + 'Youtube/videoCategories'
@@ -209,7 +208,7 @@ def searchInfluencers():
         print(videoCat_json['data'])
     except Exception as e:
         print(e)
-    return render_template('search/searchInfluencers.html',country=regionCodes_json)
+    return render_template('search/searchInfluencers.html',regionCodes = regionCodes_json)
     # lookup_string = ''
     # for cat in video_categories:
     #     lookup_string += ''.join(',' + cat[1])
