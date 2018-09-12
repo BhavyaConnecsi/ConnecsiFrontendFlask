@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="c7b20242-635e-40ff-a974-c7ab7a627102" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/search/searchInfluencers.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/search/searchInfluencers.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user/edit-profile-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/edit-profile-page.html" afterDir="false" />
     </list>
+=======
+<<<<<<< HEAD
+    <list default="true" id="c7b20242-635e-40ff-a974-c7ab7a627102" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/dashboard_layout_new.html" afterPath="$PROJECT_DIR$/templates/dashboard_layout_new.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/includes/_sidenav.html" afterPath="$PROJECT_DIR$/templates/includes/_sidenav.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/user-profile-page.html" afterPath="$PROJECT_DIR$/templates/user/user-profile-page.html" />
+    </list>
+=======
+    <list default="true" id="c7b20242-635e-40ff-a974-c7ab7a627102" name="Default" comment="" />
+>>>>>>> ebfc4b6d93d6a6bff6be08bd95bf3308dc174205
+>>>>>>> 2fc5369de18564daa357256a6f69525e38ea4013
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +103,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/connecsiApp.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="17">
+=======
+<<<<<<< HEAD
+            <state relative-caret-position="242">
+              <caret line="155" column="51" lean-forward="false" selection-start-line="155" selection-start-column="51" selection-end-line="155" selection-end-column="51" />
+              <folding />
+=======
+            <state relative-caret-position="-2533">
+>>>>>>> 2fc5369de18564daa357256a6f69525e38ea4013
               <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+>>>>>>> ebfc4b6d93d6a6bff6be08bd95bf3308dc174205
             </state>
           </provider>
         </entry>
@@ -108,6 +131,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/search/searchInfluencers.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="187">
               <caret line="84" column="44" selection-start-line="84" selection-start-column="44" selection-end-line="84" selection-end-column="44" />
               <folding>
@@ -118,6 +142,16 @@
                 <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#div#1;n#div#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
               </folding>
+=======
+<<<<<<< HEAD
+            <state relative-caret-position="244">
+              <caret line="138" column="67" lean-forward="false" selection-start-line="138" selection-start-column="67" selection-end-line="138" selection-end-column="67" />
+              <folding />
+=======
+            <state relative-caret-position="1088">
+              <caret line="64" column="4" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
+>>>>>>> ebfc4b6d93d6a6bff6be08bd95bf3308dc174205
+>>>>>>> 2fc5369de18564daa357256a6f69525e38ea4013
             </state>
           </provider>
         </entry>
@@ -125,15 +159,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/dashboard_layout.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-1691" />
+=======
+<<<<<<< HEAD
+            <state relative-caret-position="1088">
+              <caret line="64" column="27" lean-forward="false" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+              <folding />
+=======
+            <state relative-caret-position="476">
+              <caret line="28" column="72" selection-start-line="28" selection-start-column="72" selection-end-line="28" selection-end-column="72" />
+>>>>>>> ebfc4b6d93d6a6bff6be08bd95bf3308dc174205
+            </state>
+>>>>>>> 2fc5369de18564daa357256a6f69525e38ea4013
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="238">
+              <caret line="14" column="93" lean-forward="false" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="93" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+              </folding>
+=======
             <state relative-caret-position="51">
               <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+>>>>>>> ebfc4b6d93d6a6bff6be08bd95bf3308dc174205
             </state>
           </provider>
         </entry>
@@ -195,6 +249,12 @@
         <option value="$PROJECT_DIR$/templates/includes/_footer.html" />
         <option value="$PROJECT_DIR$/templates/dashboard_layout_new.html" />
         <option value="$PROJECT_DIR$/templates/includes/_navbar.html" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/connecsiApp.py" />
+        <option value="$PROJECT_DIR$/templates/search/searchInfluencers.html" />
+        <option value="$PROJECT_DIR$/templates/user/user-profile-page.html" />
+=======
+>>>>>>> ebfc4b6d93d6a6bff6be08bd95bf3308dc174205
         <option value="$PROJECT_DIR$/templates/includes/_sidenav.html" />
         <option value="$PROJECT_DIR$/connecsiApp.py" />
         <option value="$PROJECT_DIR$/templates/user/edit-profile-page.html" />
@@ -257,8 +317,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
+    <property name="last_opened_file_path" value="C:/connecsiAdminMaterialTestBhavyapush/ConnecsiFrontendFlask" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+=======
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../PythonFlaskFrontend" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+>>>>>>> ebfc4b6d93d6a6bff6be08bd95bf3308dc174205
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -315,8 +381,12 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+=======
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
+>>>>>>> ebfc4b6d93d6a6bff6be08bd95bf3308dc174205
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14599092" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -408,15 +478,44 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/connecsiApp.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+=======
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/templates/search/searchInfluencers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="112" column="20" lean-forward="false" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user/user-profile-page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="93" lean-forward="false" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="93" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+          </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/templates/campaign/addCampaignForm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="121" column="17" selection-start-line="121" selection-start-column="17" selection-end-line="121" selection-end-column="17" />
+>>>>>>> ebfc4b6d93d6a6bff6be08bd95bf3308dc174205
+>>>>>>> 2fc5369de18564daa357256a6f69525e38ea4013
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-1768" />
       </provider>
     </entry>
@@ -432,11 +531,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
           <caret line="208" column="24" lean-forward="true" selection-start-line="94" selection-start-column="24" selection-end-line="208" selection-end-column="24" />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="242">
+          <caret line="155" column="51" lean-forward="false" selection-start-line="155" selection-start-column="51" selection-end-line="155" selection-end-column="51" />
+          <folding />
+=======
+        <state relative-caret-position="-2533">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+>>>>>>> ebfc4b6d93d6a6bff6be08bd95bf3308dc174205
+>>>>>>> 2fc5369de18564daa357256a6f69525e38ea4013
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/user/edit-profile-page.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="230">
           <caret line="102" column="123" selection-start-line="102" selection-start-column="83" selection-end-line="102" selection-end-column="123" />
         </state>
@@ -460,6 +570,32 @@
             <element signature="n#style#0;n#div#0;n#div#1;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
           </folding>
         </state>
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="325">
+          <caret line="60" column="34" lean-forward="true" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/includes/_sidenav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="64" column="27" lean-forward="false" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/dashboard_layout_new.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="138" column="67" lean-forward="false" selection-start-line="138" selection-start-column="67" selection-end-line="138" selection-end-column="67" />
+          <folding />
+        </state>
+=======
+        <state relative-caret-position="-1309" />
+>>>>>>> ebfc4b6d93d6a6bff6be08bd95bf3308dc174205
+>>>>>>> 2fc5369de18564daa357256a6f69525e38ea4013
       </provider>
     </entry>
   </component>

@@ -44,7 +44,7 @@
     <!--<script type="text/javascript" src="/static/js/custom-script.js"></script>-->
 </head>
 
-<body data-col="2-columns" class=" 2-columns ">
+<body data-col="2-columns" class=" 2-columns " onload="onLoad()">
 {% include 'includes/_navbar.html'%}
 <!-- END HEADER -->
 
@@ -89,22 +89,6 @@
 <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
 <!--<script type="text/javascript" src="/static/js/plugins/jquery-1.11.2.min.js"></script>-->
 <!-- Toast Notification -->
-<script type="text/javascript">
-    // Toast Notification
-    $(window).load(function() {
-
-        setTimeout(function() {
-            Materialize.toast('<span>Hiya! I am a toast.</span>', 1500);
-        }, 1500);
-        setTimeout(function() {
-            Materialize.toast('<span>You can swipe me too!</span>', 3000);
-        }, 5000);
-        setTimeout(function() {
-            Materialize.toast('<span>You have new order.</span><a class="btn-flat yellow-text" href="#">Read<a>', 3000);
-        }, 15000);
-    });
-
-    </script>
 <script>
     $( document ).ready(function() {
         $("#btn-search-inf").click(function(){
@@ -135,12 +119,28 @@
 <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
 <script>
     $( document ).ready(function() {
-        $("#main-menu-navigation li a").on('click', function(e){
-        $("#main-menu-navigation .active").removeClass('active');
-        $(this).parent().addClass('active');
-        <!--e.preventDefault();-->
-});
+        $("#main-menu-navigation li a").on('click', function(){
+        <!--$("#main-menu-navigation .active").removeClass('active');-->
+        var href = $(this).attr('href');
+        if(href!='#'){
+            localStorage.setItem('selectedHref', href);
+        }
+        });
      });
 </script>
+<script>
+function onLoad() {
+    var selectedHref = localStorage.getItem('selectedHref');
+    <!--alert(selectedHref);-->
+    <!--var str = "'a[href='"+selectedHref+"']'";-->
+    <!--alert(str);-->
+    <!--var nodeValue = $('a[href="/admin"]').parent("li").attr("class");-->
+    $("a[href$='"+selectedHref+"']").closest("li").addClass('active');
+    $("a[href$='"+selectedHref+"']").parents("li").addClass('open');
+    <!--alert("Page is loaded");-->
+    <!--$('.nav-item a').filter(function(){return this.href==location.href}).parent().addClass('active').siblings().removeClass('active');-->
+}
+</script>
+
 </body>
 </html>
