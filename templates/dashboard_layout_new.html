@@ -59,7 +59,7 @@
     <!--end container-->
     <!--{% include 'includes/_right_sidenav.html' %}-->
 </div>
-{% include 'includes/_footer.html' %}
+<!--{% include 'includes/_footer.html' %}-->
 <!-- BEGIN VENDOR JS-->
 
 <script src="static/app-assets/vendors/js/core/jquery-3.2.1.min.js" type="text/javascript"></script>
@@ -124,53 +124,28 @@
             localStorage.setItem('selectedHref', href);
         }
         });
-        var slider = document.getElementById('slider');
-        noUiSlider.create(slider, {
-        start: [20, 80],
-        connect: true,
-        range: {
-            'min': 0,
-            'max': 100
-        }
-        });
-        var snapValues = [
-	        document.getElementById('slider-snap-value-lower'),
-	        document.getElementById('slider-snap-value-upper')
-            ];
-            snapSlider.noUiSlider.on('update', function( values, handle ) {
-	        snapValues[handle].innerHTML = values[handle];
-});
+
+        //search button click event
+        $("#btn-search-inf").click(function(){
+             var min_lower = $("#lower-value").text();
+             var max_upper = $("#upper-value").text();
+             <!--alert(min_lower);-->
+             <!--alert(max_upper);-->
+             $("#min_lower").val(min_lower);
+             $("#max_upper").val(max_upper);
+         });
+         // search button click event ends
+
      });
 </script>
 <script>
 function onLoad() {
     var selectedHref = localStorage.getItem('selectedHref');
-    <!--alert(selectedHref);-->
-    <!--var str = "'a[href='"+selectedHref+"']'";-->
-    <!--alert(str);-->
     <!--var nodeValue = $('a[href="/admin"]').parent("li").attr("class");-->
     $("a[href$='"+selectedHref+"']").closest("li").addClass('active');
     $("a[href$='"+selectedHref+"']").parents("li").addClass('open');
     <!--alert("Page is loaded");-->
     <!--$('.nav-item a').filter(function(){return this.href==location.href}).parent().addClass('active').siblings().removeClass('active');-->
-     var slider = document.getElementById('test-slider');
-        noUiSlider.create(slider, {
-       <!--{% if min_lower and max_upper %}-->
-       start: [{{ min_lower }}, {{ max_upper }}],
-       <!--{% else %}-->
-       start: [0,10000000],
-       <!--{% endif %}-->
-       connect: true,
-       step: 1,
-       orientation: 'vertical', // 'horizontal' or 'vertical'
-       range: {
-         'min': 0,
-         'max': 10000000
-       },
-       format: wNumb({
-         decimals: 0
-       })
-    });
 
 }
 </script>
