@@ -277,31 +277,29 @@ def searchInfluencers():
 
 
 #
-# @connecsiApp.route('/addFundsBrands')
-# @is_logged_in
-# def addFundsBrands():
-#     return render_template('user/add_funds.html')
-#
-# @connecsiApp.route('/saveFunds',methods=['POST'])
-# @is_logged_in
-# def saveFunds():
-#     if request.method == 'POST':
-#        amount = request.form.get('amount')
-#        description = request.form.get('description')
-#        print(amount)
-#        print(description)
-#        user_id = session['user_id']
-#        print(user_id)
-#        email_id = session['email_id']
-#        date = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
-#        data = [user_id,date,email_id,amount,description]
-#        connecsiObj =ConnecsiModel()
-#        connecsiObj.insert__(table_name='users_brands_payments',columns=['user_id','date','email_id','amount','description'],data=data)
-#        # payment(user_id,date,email_id,amount,description)
-#        return redirect(url_for('payment'))
-#     else:
-#         return redirect(url_for('addFundsBrands'))
-#
+@connecsiApp.route('/addFundsBrands')
+@is_logged_in
+def addFundsBrands():
+    return render_template('user/add_funds.html')
+
+
+@connecsiApp.route('/saveFundsBrands',methods=['POST'])
+@is_logged_in
+def saveFundsBrands():
+    if request.method == 'POST':
+       payload = request.form.to_dict()
+       print(payload)
+       user_id = session['user_id']
+       url = base_url+'Payments/'+str(user_id)
+       try:
+           response = requests.post(url=url, json=payload)
+           result_json = response.json()
+           return viewMyPayments()
+       except:
+           pass
+    else:
+        return redirect(url_for('addFundsBrands'))
+
 #
 # @connecsiApp.route('/payment')
 # @is_logged_in
@@ -314,14 +312,20 @@ def searchInfluencers():
 # def checkout():
 #     return redirect(url_for('viewMyPayments'))
 #
-# @connecsiApp.route('/viewMyPayments')
-# @is_logged_in
-# def viewMyPayments():
-#     connecsiObj = ConnecsiModel()
-#     user_id = session['user_id']
-#     data = connecsiObj.get__(table_name='users_brands_payments',STAR='*',WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
-#     print(data)
-#     return render_template('user/view_my_payments.html',data=data)
+@connecsiApp.route('/viewMyPayments')
+@is_logged_in
+def viewMyPayments():
+    data = ''
+    user_id = session['user_id']
+    url = base_url + 'Payments/'+str(user_id)
+    try:
+        response = requests.get(url=url)
+        data = response.json()
+        print(data)
+        return render_template('user/view_my_payments.html', data=data)
+    except:
+        pass
+    return render_template('user/view_my_payments.html',data=data)
 #
 #
 # @connecsiApp.route('/addCampaign')
@@ -367,10 +371,10 @@ def searchInfluencers():
 #         connecsiObj.insert__(table_name='brands_campaigns',columns=columns,data=data)
 #         return ""
 #
-# @connecsiApp.route('/email')
-# @is_logged_in
-# def email():
-#     return render_template('email/email.html')
+@connecsiApp.route('/inbox')
+@is_logged_in
+def email():
+    return render_template('email/inbox.html')
 
 # @connecsiApp.route('/login/authorized')
 # def authorized():

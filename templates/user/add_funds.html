@@ -1,30 +1,112 @@
 {% extends 'dashboard_layout_new.html' %}
 {{ super() }}
 {% block body %}
+<div class="row">
+<div class="col-sm-12">
+    <div class="content-header">Add Funds</div>
+</div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title" id="basic-layout-form">Add Amount and Description</h4>
+                <!--<p class="mb-0">This is the most basic and default form having form sections. To add form section use <code>.form-section</code> class with any heading tags. This form has the buttons on the bottom left corner which is the default position.</p>-->
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+                    <form class="form" action="/saveFundsBrands" method="POST">
+                        <div class="form-body">
+                            <!--<h4 class="form-section"><i class="ft-user"></i> Funds Info</h4>-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-6">-->
+                                    <!--<div class="form-group">-->
+                                        <!--<label for="projectinput1">First Name</label>-->
+                                        <!--<input type="text" id="projectinput1" class="form-control"  name="fname">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-6">-->
+                                    <!--<div class="form-group">-->
+                                        <!--<label for="projectinput2">Last Name</label>-->
+                                        <!--<input type="text" id="projectinput2" class="form-control"  name="lname">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-6">-->
+                                    <!--<div class="form-group">-->
+                                        <!--<label for="projectinput3">E-mail</label>-->
+                                        <!--<input type="text" id="projectinput3" class="form-control"  name="email">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-6">-->
+                                    <!--<div class="form-group">-->
+                                        <!--<label for="projectinput4">Contact Number</label>-->
+                                        <!--<input type="text" id="projectinput4" class="form-control"  name="phone">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
 
-<div class="container">
-    <div  class="section">
-        <div class="row">
-            <div class="col s12 m4 l6">
-                <h4 class="header">Add Funds</h4>
-                <form action="/saveFunds" method="POST">
-                    <div class="col s12 center card-panel">
-                        <div class="form-field">
-                            <input type="number" name="amount" id="amount" placeholder="Amonunt">
+                            <!--<h4 class="form-section"><i class="ft-file-text"></i> Requirements</h4>-->
+
+                            <div class="form-group">
+                                <label for="amount">Amount</label>
+                                <input required type="number"  class="form-control"  name="amount">
+                            </div>
+
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-6">-->
+                                    <!--<div class="form-group">-->
+                                        <!--<label for="projectinput5">Interested in</label>-->
+                                        <!--<select id="projectinput5" name="interested" class="form-control">-->
+                                            <!--<option value="none" selected="" disabled="">Interested in</option>-->
+                                            <!--<option value="design">design</option>-->
+                                            <!--<option value="development">development</option>-->
+                                            <!--<option value="illustration">illustration</option>-->
+                                            <!--<option value="branding">branding</option>-->
+                                            <!--<option value="video">video</option>-->
+                                        <!--</select>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class="col-md-6">-->
+                                    <!--<div class="form-group">-->
+                                        <!--<label for="projectinput6">Budget</label>-->
+                                        <!--<select id="projectinput6" name="budget" class="form-control">-->
+                                            <!--<option value="0" selected="" disabled="">Budget</option>-->
+                                            <!--<option value="less than 5000$">less than 5000$</option>-->
+                                            <!--<option value="5000$ - 10000$">5000$ - 10000$</option>-->
+                                            <!--<option value="10000$ - 20000$">10000$ - 20000$</option>-->
+                                            <!--<option value="more than 20000$">more than 20000$</option>-->
+                                        <!--</select>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="form-group">-->
+                                <!--<label>Select File</label>-->
+                                <!--<input type="file" class="form-control-file" id="projectinput8">-->
+                            <!--</div>-->
+
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea required rows="5" class="form-control" name="description" ></textarea>
+                            </div>
                         </div>
-                        <div class="form-field">
-                            <input type="text" name="description" id="description" placeholder="Description">
+
+                        <div class="form-actions">
+                            <!--<button type="button" class="btn btn-raised btn-raised btn-warning mr-1">-->
+                                <!--<i class="ft-x"></i> Cancel-->
+                            <!--</button>-->
+                            <button type="submit" class="btn btn-raised btn-raised btn-primary">
+                                <i class="fa fa-check-square-o"></i> Save
+                            </button>
                         </div>
-                        <div class="form-field center-align">
-                            <button class="waves-effect waves-light btn hoverable" type="submit">Add</button>
-                        </div>
-                        <br>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}
 
