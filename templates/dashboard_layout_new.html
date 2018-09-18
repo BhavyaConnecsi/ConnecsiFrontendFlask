@@ -4,10 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Apex admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Apex admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="PIXINVENT">
-    <title>Dashboard1 - Apex responsive bootstrap 4 admin template</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="Kiran Padwal" content="Connecsi">
+    <title>Dashboard</title>
     <link rel="apple-touch-icon" sizes="60x60" href="static/app-assets/img/ico/apple-icon-60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="static/app-assets/img/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="static/app-assets/img/ico/apple-icon-120.png">
@@ -32,16 +32,11 @@
     <!-- END APEX CSS-->
     <!-- BEGIN Page Level CSS-->
     <!-- END Page Level CSS-->
-    <!--<link href="/static/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection">-->
-    <!--<link href="/static/css/style.min.css" type="text/css" rel="stylesheet" media="screen,projection">-->
-    <!--<link href="/static/css/custom/custom.min.css" type="text/css" rel="stylesheet" media="screen,projection">-->
-    <link href="https://materializecss.com/extras/noUiSlider/nouislider.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <script type="text/javascript" src="http://materializecss.com/extras/noUiSlider/nouislider.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/app-assets/noUiSlider.11.1.0/nouislider.css">
+    <!--<link href="https://materializecss.com/extras/noUiSlider/nouislider.css" type="text/css" rel="stylesheet" media="screen,projection">-->
 
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-    <!--<script type="text/javascript" src="/static/js/plugins.min.js"></script>-->
-    <!--&lt;!&ndash;custom-script.js - Add your own theme custom JS&ndash;&gt;-->
-    <!--<script type="text/javascript" src="/static/js/custom-script.js"></script>-->
+  <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
 </head>
 
 <body data-col="2-columns" class=" 2-columns " onload="onLoad()">
@@ -64,8 +59,9 @@
     <!--end container-->
     <!--{% include 'includes/_right_sidenav.html' %}-->
 </div>
-{% include 'includes/_footer.html' %}
+<!--{% include 'includes/_footer.html' %}-->
 <!-- BEGIN VENDOR JS-->
+
 <script src="static/app-assets/vendors/js/core/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="static/app-assets/vendors/js/core/popper.min.js" type="text/javascript"></script>
 <script src="static/app-assets/vendors/js/core/bootstrap.min.js" type="text/javascript"></script>
@@ -89,6 +85,9 @@
 <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
 <!--<script type="text/javascript" src="/static/js/plugins/jquery-1.11.2.min.js"></script>-->
 <!-- Toast Notification -->
+<script src="static/app-assets/noUiSlider.11.1.0/nouislider.js" type="text/javascript"></script>
+<script src="static/app-assets/js/inbox.js" type="text/javascript"></script>
+<!--<script type="text/javascript" src="http://materializecss.com/extras/noUiSlider/nouislider.js"></script>-->
 <script>
     $( document ).ready(function() {
         $("#btn-search-inf").click(function(){
@@ -126,21 +125,32 @@
             localStorage.setItem('selectedHref', href);
         }
         });
+
+        //search button click event
+        $("#btn-search-inf").click(function(){
+             var min_lower = $("#lower-value").text();
+             var max_upper = $("#upper-value").text();
+             <!--alert(min_lower);-->
+             <!--alert(max_upper);-->
+             $("#min_lower").val(min_lower);
+             $("#max_upper").val(max_upper);
+         });
+         // search button click event ends
+
      });
 </script>
 <script>
 function onLoad() {
     var selectedHref = localStorage.getItem('selectedHref');
-    <!--alert(selectedHref);-->
-    <!--var str = "'a[href='"+selectedHref+"']'";-->
-    <!--alert(str);-->
     <!--var nodeValue = $('a[href="/admin"]').parent("li").attr("class");-->
     $("a[href$='"+selectedHref+"']").closest("li").addClass('active');
     $("a[href$='"+selectedHref+"']").parents("li").addClass('open');
     <!--alert("Page is loaded");-->
     <!--$('.nav-item a').filter(function(){return this.href==location.href}).parent().addClass('active').siblings().removeClass('active');-->
+
 }
 </script>
+
 
 </body>
 </html>

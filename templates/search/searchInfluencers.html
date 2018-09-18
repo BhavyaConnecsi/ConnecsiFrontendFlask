@@ -1,79 +1,149 @@
 {% extends 'dashboard_layout_new.html' %}
 {{ super() }}
 {% block body %}
+<head>
+  <style>
+    .text-field {
+    -moz-box-sizing: border-box;
+    border: 1px solid #EEEEEE;
+    font-family: "Source Sans Pro",Arial,sans-serif;
+    font-size: 0.73684em;
+    font-weight: 600;
+    height: 37px;
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+}
+.autocomplete-suggestion {
+    overflow: hidden;
+    padding: 2px 5px;
+    white-space: nowrap;
+    background-color:white;
+    <!--max-width:500px;-->
+    <!--margin: auto;-->
+    <!--border: 3px solid #73AD21;-->
+}
+@media only screen and (max-width: 450px){
+    .autocomplete-suggestion { width: 80%; }
+}
+
+.autocomplete-suggestions strong {
+    color: #3399FF;
+    font-weight: normal;
+
+}
+.autocomplete-selected{
+  background-color:#F0F0F0;
+}
+    </style>
+
+</head>
 <div class="row" style="justify-content: center">
   <div class="col-xl-12 col-lg-12  col-md-12 col-12">
-    <div class="card gradient-dracula">
+    <div class="card">
       <div class="card-body" style="padding: 12px">
-
-        <div class="form-body">
-          <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
-
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
-              <div class="form-group">
-                <ng-template #rt let-r="result" let-t="term">
-                  <ngb-highlight [result]="r.video_cat_name"  [term]="t"></ngb-highlight>
-                </ng-template>
-                <input id="typeahead-focus" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search"
-                       (focus)="focus$.next($event.target.value)" (selectItem)="selectedItem($event)" [inputFormatter]="formatter" placeholder="Enter Keywords"
-                       [disabled]="!searchAllowed" [resultTemplate]="rt" (click)="click$.next($event.target.value)"
-                       #instance="ngbTypeahead" />
+        <form class="col s12" action="/searchInfluencers" method="POST">
+          <div class="form-body">
+            <div class="row">
+              <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
               </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
-
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
-              <div class="form-group">
-                <label for="disabledInput">Channel</label>
+              <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
                 <div class="form-group">
-                  <select class="form-control" (change)="selectChangeHandler($event)">
-                    <option value="facebook">Facebook</option>
-                    <option value="twitter">Twitter</option>
-                    <option value="instagram">Instagram</option>
-                    <option value="youtube">Youtube</option>
-                  </select>
+                  <input class="form-control" id="string_word" name="string_word" type="text" placeholder="Search Category"
+                         {% if form_filters['string_word'] %}
+                         value="{{ form_filters['string_word'] }}"
+                         {% endif %}
+                  >
+                </div>
+                <!--{{ form_filters }}-->
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+                <div class="form-group">
+                  <label>Channel</label>
+                  <div class="form-group">
+                    <select class="form-control" name="channel">
+                      {% if form_filters['channel'] %}
+                      <option value="{{ form_filters['channel'] }}">{{ form_filters['channel'] }}</option>
+                      {% endif %}
+                      <option value="Youtube">Youtube</option>
+                      <option value="Twitter">Twitter</option>
+                      <option value="Facebook">Facebook</option>
+                      <option value="Instagram">Instagram</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+                <div class="form-group">
+                  <label>Country</label>
+                  <div class="form-group">
+                    <select class="form-control" name="country">
+                      {% if form_filters['country'] %}
+                      <option value="{{ form_filters['country'] }}">{{ form_filters['country_name'] }}</option>
+                      <option value=""></option>
+                      {% else %}
+                      <option value=""></option>
+                      {% endif %}
+
+                      {% for item in regionCodes['data'] %}
+                      <option value="{{ item['region_code'] }}">{{ item['country_name'] }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+                <div class="form-group">
+                  <p>
+                    <label>Followers range:</label>
+                  </p>
+                  <div id="slider"></div>
+                </div>
+                <div class="float-left">Min Followers : </div>
+                <div id="lower-value" ></div>
+                <div class="float-left">Max Followers : </div>
+                <div id="upper-value"></div>
+                <input type="hidden" name="min_lower" value="" id="min_lower">
+                <input type="hidden" name="max_upper" value="" id="max_upper">
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+                <div class="form-group">
+                  <label>Sort Followers</label>
+                  <div class="form-group">
+                    <select class="form-control" name="sort_order">
+                      {% if form_filters['sort_order'] %}
+                      <option value="{{ form_filters['sort_order'] }}">{{ form_filters['sort_order'] }}</option>
+                      {% endif %}
+                      <option value="High To Low">High To Low</option>
+                      <option value="Low To High">Low To High</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
+                <div class="form-group spacing">
+                  <button id="btn-search-inf" type="submit" class="btn btn-raised btn-raised btn-primary customButton" name="search_inf">
+                    <i class="fa fa-search"></i> Search
+                  </button>
                 </div>
               </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
-              <div class="form-group">
-                <label for="disabledInput">Country</label>
-                <div class="form-group">
-                  <select class="form-control" (change)="selectCountryChangeHandler($event)" >
-                    <option *ngFor="let country of countries" value="{{country.region_code}}">{{country.country_name}}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
-              <div class="form-group">
-                <label>Followers</label>
-                <div id="test-slider"></div>
-                <!--<range-slider #div  min="0" max="25000" minValue="0" maxValue="25000" step="10">-->
-                <!--</range-slider>-->
-              </div>
-              <input type="hidden" name="min_lower" value="" id="min_lower">
-              <input type="hidden" name="max_upper" value="" id="max_upper">
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 mb-1">
-              <div class="form-group spacing">
-                <button type="button" (click)="searchVideo()" class="btn btn-raised btn-raised btn-primary customButton">
-                  <i class="fa fa-search"></i> Search
-                </button>
-              </div>
-            </div>
-
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col"><h4  class="text-center">Influencers on Youtube</h4></div>
+</div>
+{% for item in data['data'] %}
 <div class="row">
   <div class="col-xl-12 col-lg-12 col-md-12 mb-1 col-12">
     <div class="card">
@@ -81,86 +151,111 @@
         <div class="px-3 py-3">
           <div class="media">
             <div class="media-body text-left">
-              <div class="row">
-              <div class="col"><h4  class="text-center">Influencers on Youtube</h4></div>
-                <div class="col" style="align-items: right; padding-left: 40%;"><button class="text-right">Sort</button></div>
-                </div>
-              <hr>
-              <span>
                 <div class="row">
-                  <div class="col-sm-2">Image</div>
-                  <div class="col-sm-6">Pew Dew Pie<i class="ft-mail font-small-3"></i>
+                  <div class="col-sm-2"><img src="{{ item['channel_img'] }}" height="150px" width="150px"></div>
+                  <div class="col-sm-6">{{ item['title'] }} &nbsp;<i class="fa fa-youtube-play font-medium-3 red"></i>
                     <br>
                     <br>
                     <div class="container">
                       <div class="row">
-                        <div class="col-sm-3" style="border-right: 1px solid #ccc;">Total Followers<br>
-                          5400000
+                        <div class="col-sm-3 text-truncate" style="border-right: 1px solid #ccc;"><small>Total Followers</small><br>
+                          {{ item['subscriberCount_gained'] }}
                         </div>
-                        <div class="col-sm-3" style="border-right: 1px solid #ccc;">Avg<br> Views/video<br>
-                          8090</div>
-                        <div class="col-sm-3" style="border-right: 1px solid #ccc;">Avg<br> Likes/video<br>
-                          3545</div>
-                        <div class="col-sm-3" style="border-right: 1px solid #ccc;">Avg<br> Comments/video<br>
-                          687698</div>
+                        <div class="col-sm-3 text-truncate" style="border-right: 1px solid #ccc;"><small>Avg Views/video</small><br>
+                          {{ (item['total_100video_views']/100)|int }}</div>
+                        <div class="col-sm-3 text-truncate" style="border-right: 1px solid #ccc;"><small>Avg Likes/video</small><br>
+                          {{ (item['total_100video_likes']/100)|int }}</div>
+                        <div class="col-sm-3 text-truncate" style="border-right: 1px solid #ccc;"><small>Avg Comments/video</small><br>
+                          {{ (item['total_100video_comments']/100)|int }}</div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-2"><br>Followers<br>
-                    Graph</div>
+                  <div class="col-sm-2"><br>Followers Graph</div>
                 </div>
-                <br><br>
-                <div class="conatiner">
+                <div class="container">
                   <div class="row"  style="padding-left: 30%;">
-                    <i class="ft-mail font-small-3"></i>
-                    <i class="ft-mail font-small-3"></i>
-                    <i class="ft-mail font-small-3"></i>
-                    <i class="ft-mail font-small-3"></i>
-                    Other Channels
-                    <i class="ft-mail font-small-3"></i>
-                    <i class="ft-mail font-small-3"></i>
+                    <i class="fa fa-envelope" style="font-size:36px;color:blue;"></i>&nbsp;
+                    <i class="fa fa-bullseye red"style="font-size:36px;"></i>&nbsp;
+                    <i class="fa fa-eye cyan"style="font-size:36px;"></i>&nbsp;
+                    <i class="fa fa-star-o yellow"style="font-size:36px;"></i>&nbsp;&nbsp;
+                    <small>Other Channels</small>
+                    {% if item['facebook_url'] %}
+                    <i class="fa fa-facebook-official"style="font-size:36px;color:blue;"></i>&nbsp;
+                    {% endif %}
+                    {% if item['insta_url'] %}
+                    <i class="fa fa-instagram" style="font-size:36px;color:red;"></i>&nbsp;
+                    {% endif %}
+                    {% if item['twitter_url'] %}
+                    <i class="fa fa-twitter"style="font-size:36px;color:cyan;"></i>&nbsp;
+                    {% endif %}
                   </div>
                 </div>
-
-              </span>
             </div>
-
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<script type="text/javascript">
+{% endfor %}
 
-    var slider = document.getElementById('test-slider');
-    noUiSlider.create(slider, {
-    {% if min_lower and max_upper %}
-    start: [{{ min_lower }}, {{ max_upper }}],
-    {% else %}
-    start: [0,1000],
-    {% endif %}
-    connect: true,
-        step: 1,
-        orientation: 'horizontal', // 'horizontal' or 'vertical'
-        range: {
-        'min': 0,
-            'max': 1000
-    },
-    format: wNumb({
-        decimals: 0
-    })
-    });
-</script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.24/jquery.autocomplete.min.js"></script>
 <script>
-    a1 = $('#string_word').autocomplete({
-        width: 348,
-        delimiter: /(,|;)\s*/,
-        lookup: '{{ lookup_string }}'.split(',')
-    });
+   a1 = $('#string_word').autocomplete({
+         width: 348,
+         delimiter: /(,|;)\s*/,
+         lookup: '{{ lookup_string }}'.split(',')
+      });
 
 </script>
+<script>
+$( document ).ready(function() {
 
+        // range slider starts
+        var nonLinearSlider = document.getElementById('slider');
+        noUiSlider.create(nonLinearSlider, {
+	        connect: true,
+	        behaviour: 'tap',
+	        {% if form_filters['min_lower'] and form_filters['max_upper'] %}
+            start: [{{ form_filters['min_lower'] }}, {{ form_filters['max_upper'] }}],
+            {% else %}
+            start: [0,10000000],
+            {% endif %}
+	        behaviour: 'tap-drag',
+	        tooltips: false,
+
+	        range: {
+		    // Starting at 500, step the value by 500,
+		    // until 4000 is reached. From there, step by 1000.
+		    'min': [ 0 ],
+		    <!--'10%': [ 500, 500 ],-->
+		    <!--'50%': [ 4000, 1000 ],-->
+		    'max': [ 1000000 ]
+	        },
+	        format: {
+                from: function(value) {
+                    return parseInt(value);
+                },
+            to: function(value) {
+                return parseInt(value);
+                }
+            }
+
+        });
+        var nodes = [
+	        document.getElementById('lower-value'), // 0
+	        document.getElementById('upper-value')  // 1
+        ];
+        // Display the slider value and how far the handle moved
+        // from the left edge of the slider.
+        nonLinearSlider.noUiSlider.on('update', function ( values, handle, unencoded, isTap, positions ) {
+	        nodes[handle].innerHTML = values[handle];
+        });
+        // range slider ends
+
+
+
+});
+</script>
 {% endblock %}

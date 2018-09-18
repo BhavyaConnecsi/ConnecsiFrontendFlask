@@ -188,100 +188,118 @@ def updateProfile():
         url = base_url+ 'Brand/'+str(user_id)
         payload = request.form.to_dict()
         print(payload)
+        try:
+            response = requests.put(url=url,json=payload)
+            result_json = response.json()
+            # return redirect(url_for('/profileView'))
+            return profileView()
+        except:pass
 
 
 @connecsiApp.route('/searchInfluencers',methods=['POST','GET'])
 @is_logged_in
 def searchInfluencers():
-#     video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
     url_regionCodes = base_url + 'Youtube/regionCodes'
+    regionCodes_json=''
+    videoCat_json=''
+    form_filters=''
+    country_name=''
     try:
         response_regionCodes = requests.get(url=url_regionCodes)
         regionCodes_json = response_regionCodes.json()
-        print(regionCodes_json['data'])
-
+        # print(regionCodes_json['data'])
     except Exception as e:
         print(e)
     url_videoCat = base_url + 'Youtube/videoCategories'
     try:
         response_videoCat = requests.get(url=url_videoCat)
         videoCat_json = response_videoCat.json()
-        print(videoCat_json['data'])
+        # print(videoCat_json['data'])
     except Exception as e:
         print(e)
-    return render_template('search/searchInfluencers.html',country=regionCodes_json)
-    # lookup_string = ''
-    # for cat in video_categories:
-    #     lookup_string += ''.join(',' + cat[1])
-    # lookup_string = lookup_string.replace('&', 'and')
-    # if request.method=='POST':
-    #     if 'search_inf' in request.form:
-    #         string_word = request.form.get('string_word')
-    #         print(string_word)
-    #         category = string_word.replace('and','&')
-            # print(category)
-            # category_id=''
-#             try:
-#                 category_details = connecsiObj.get__(table_name='youtube_video_categories',STAR='*',WHERE='WHERE',compare_column='video_cat_name',compare_value=category)
-#                 category_id = category_details[0][0]
-#             except:pass
-#             print(category_id)
-#             channel = request.form.get('select_channel')
-#             country = request.form.get('select_country')
-#             print(country)
-#             if country == None:
-#                 country = ''
-#             print(country)
-#             min_lower = request.form.get('min_lower')
-#             max_upper = request.form.get('max_upper')
-#             sort_order = request.form.get('sort')
-#             print(sort_order)
-#             data = connecsiObj.search_inf(channel_id=channel,
-#                                           min_lower=str(min_lower), max_upper=str(max_upper)
-#                                           , category_id=str(category_id), country=str(country),sort_order=sort_order)
-#             return render_template('search/search_influencers.html', title='Search Infulencers', data=data,
-#                                    string_word=string_word, channel=channel, country=country, min_lower=min_lower,
-#                                    max_upper=max_upper, region_codes=region_codes, lookup_string=lookup_string,sort_order=sort_order)
-#     else:
-#         connecsiObj = ConnecsiModel()
-#         # data = connecsiObj.get__(table_name='youtube_channel_details',STAR='*')
-#         data = connecsiObj.get_infulencers()
-#         # print(data)
-#         region_codes = connecsiObj.get__(table_name='youtube_region_codes',STAR='*')
-#         video_categories = connecsiObj.get__(table_name='youtube_video_categories',STAR='*')
-#         lookup_string = ''
-#         for cat in video_categories:
-#             lookup_string+=''.join(','+cat[1])
-#         lookup_string=lookup_string.replace('&', 'and')
-#         return render_template('search/search_influencers.html',title='Search Infulencers',data=data,region_codes=region_codes,lookup_string=lookup_string)
+    lookup_string = ''
+    for cat in videoCat_json['data']:
+        # print(cat['video_cat_name'])
+        lookup_string += ''.join(',' + cat['video_cat_name'])
+    lookup_string = lookup_string.replace('&', 'and')
+
+    if request.method=='POST':
+        if 'search_inf' in request.form:
+            string_word = request.form.get('string_word')
+            print(string_word)
+            # exit()
+            category = string_word.replace('and','&')
+            print(category)
+            category_id=''
+            for cat in videoCat_json['data']:
+                # print(cat['video_cat_name'])
+                if cat['video_cat_name'] == category:
+                    print("category id = ",cat['video_cat_id'])
+                    category_id = cat['video_cat_id']
+            form_filters = request.form.to_dict()
+            print(form_filters)
+            url_country_name = base_url + 'Youtube/regionCode/'+form_filters['country']
+            try:
+                response_country_name = requests.get(url=url_country_name)
+                country_name_json = response_country_name.json()
+                print(country_name_json['data'][0][1])
+                country_name = country_name_json['data'][0][1]
+            except Exception as e:
+                print(e)
+            form_filters.update({'country_name':country_name})
+            payload = request.form.to_dict()
+
+            del payload['string_word']
+            del payload['search_inf']
+            del payload['channel']
+            payload.update({'category_id': str(category_id)})
+            payload.update({'min_lower':payload.get('min_lower')})
+            payload.update({'max_upper':payload.get('max_upper')})
+            print(payload)
+            try:
+                channel = request.form.get('channel')
+                url = base_url+'Youtube/searchChannels/'+channel
+                # print(url)
+                response = requests.post(url, json=payload)
+                print(response.json())
+                data = response.json()
+                return render_template('search/searchInfluencers.html', regionCodes=regionCodes_json,
+                                       lookup_string=lookup_string, form_filters=form_filters,data=data)
+            except Exception as e:
+                print(e)
+            return render_template('search/searchInfluencers.html', regionCodes=regionCodes_json,
+                                   lookup_string=lookup_string,form_filters=form_filters)
+
+    else:
+        return render_template('search/searchInfluencers.html', regionCodes=regionCodes_json,
+                               lookup_string=lookup_string,form_filters=form_filters,data='')
+
+
+
 #
-#
-#
-# @connecsiApp.route('/addFundsBrands')
-# @is_logged_in
-# def addFundsBrands():
-#     return render_template('user/add_funds.html')
-#
-# @connecsiApp.route('/saveFunds',methods=['POST'])
-# @is_logged_in
-# def saveFunds():
-#     if request.method == 'POST':
-#        amount = request.form.get('amount')
-#        description = request.form.get('description')
-#        print(amount)
-#        print(description)
-#        user_id = session['user_id']
-#        print(user_id)
-#        email_id = session['email_id']
-#        date = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
-#        data = [user_id,date,email_id,amount,description]
-#        connecsiObj =ConnecsiModel()
-#        connecsiObj.insert__(table_name='users_brands_payments',columns=['user_id','date','email_id','amount','description'],data=data)
-#        # payment(user_id,date,email_id,amount,description)
-#        return redirect(url_for('payment'))
-#     else:
-#         return redirect(url_for('addFundsBrands'))
-#
+@connecsiApp.route('/addFundsBrands')
+@is_logged_in
+def addFundsBrands():
+    return render_template('user/add_funds.html')
+
+
+@connecsiApp.route('/saveFundsBrands',methods=['POST'])
+@is_logged_in
+def saveFundsBrands():
+    if request.method == 'POST':
+       payload = request.form.to_dict()
+       print(payload)
+       user_id = session['user_id']
+       url = base_url+'Payments/'+str(user_id)
+       try:
+           response = requests.post(url=url, json=payload)
+           result_json = response.json()
+           return viewMyPayments()
+       except:
+           pass
+    else:
+        return redirect(url_for('addFundsBrands'))
+
 #
 # @connecsiApp.route('/payment')
 # @is_logged_in
@@ -294,14 +312,20 @@ def searchInfluencers():
 # def checkout():
 #     return redirect(url_for('viewMyPayments'))
 #
-# @connecsiApp.route('/viewMyPayments')
-# @is_logged_in
-# def viewMyPayments():
-#     connecsiObj = ConnecsiModel()
-#     user_id = session['user_id']
-#     data = connecsiObj.get__(table_name='users_brands_payments',STAR='*',WHERE='WHERE',compare_column='user_id',compare_value=str(user_id))
-#     print(data)
-#     return render_template('user/view_my_payments.html',data=data)
+@connecsiApp.route('/viewMyPayments')
+@is_logged_in
+def viewMyPayments():
+    data = ''
+    user_id = session['user_id']
+    url = base_url + 'Payments/'+str(user_id)
+    try:
+        response = requests.get(url=url)
+        data = response.json()
+        print(data)
+        return render_template('user/view_my_payments.html', data=data)
+    except:
+        pass
+    return render_template('user/view_my_payments.html',data=data)
 #
 #
 @connecsiApp.route('/addCampaign')
@@ -347,10 +371,10 @@ def addCampaign():
 #         connecsiObj.insert__(table_name='brands_campaigns',columns=columns,data=data)
 #         return ""
 #
-# @connecsiApp.route('/email')
-# @is_logged_in
-# def email():
-#     return render_template('email/email.html')
+@connecsiApp.route('/inbox')
+@is_logged_in
+def email():
+    return render_template('email/inbox.html')
 
 # @connecsiApp.route('/login/authorized')
 # def authorized():
