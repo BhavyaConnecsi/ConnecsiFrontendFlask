@@ -4,7 +4,7 @@ import json
 
 import requests
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging,jsonify
-# from model.ConnecsiModel import ConnecsiModel
+#from model.ConnecsiModel import ConnecsiModel
 from passlib.hash import sha256_crypt
 #from flask_oauthlib.client import OAuth
 import os
@@ -304,14 +304,14 @@ def searchInfluencers():
 #     return render_template('user/view_my_payments.html',data=data)
 #
 #
-# @connecsiApp.route('/addCampaign')
-# @is_logged_in
-# def addCampaign():
-#     connecsiObj = ConnecsiModel()
-#     region_codes = connecsiObj.get__(table_name='youtube_region_codes',STAR='*')
-#     video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
-#     return render_template('campaign/addCampaignForm.html',region_codes=region_codes,video_categories=video_categories)
-#
+@connecsiApp.route('/addCampaign')
+@is_logged_in
+def addCampaign():
+    connecsiObj = ConnecsiModel()
+    region_codes = connecsiObj.get__(table_name='youtube_region_codes',STAR='*')
+    video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
+    return render_template('campaign/addCampaignForm.html',region_codes=region_codes,video_categories=video_categories)
+
 # @connecsiApp.route('/saveCampaign',methods=['POST'])
 # @is_logged_in
 # def saveCampaign():
