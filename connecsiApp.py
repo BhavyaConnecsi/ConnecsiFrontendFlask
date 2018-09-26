@@ -328,13 +328,23 @@ def viewMyPayments():
     return render_template('user/view_my_payments.html',data=data)
 #
 #
-@connecsiApp.route('/addCampaign')
+@connecsiApp.route('/add_Campaign')
 @is_logged_in
-def addCampaign():
-    connecsiObj = ConnecsiModel()
-    region_codes = connecsiObj.get__(table_name='youtube_region_codes',STAR='*')
-    video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
-    return render_template('campaign/addCampaignForm.html',region_codes=region_codes,video_categories=video_categories)
+def add_Campaign():
+    #connecsiObj = ConnecsiModel()
+    #region_codes = connecsiObj.get__(table_name='youtube_region_codes',STAR='*')
+    #video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
+    return render_template('campaign/add_campaignForm.html')
+
+
+@connecsiApp.route('/viewCampaigns')
+@is_logged_in
+def viewCampaigns():
+    #connecsiObj = ConnecsiModel()
+    #region_codes = connecsiObj.get__(table_name='youtube_region_codes',STAR='*')
+    #video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
+    return render_template('campaign/viewCampaigns.html')
+
 
 # @connecsiApp.route('/saveCampaign',methods=['POST'])
 # @is_logged_in

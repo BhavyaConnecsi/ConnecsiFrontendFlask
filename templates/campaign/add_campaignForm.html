@@ -1,0 +1,128 @@
+
+{% extends 'dashboard_layout_new.html' %}
+{{ super() }}
+{% block body %}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="content-header">Create New Campaign</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <form class="form" name="campaign_form" id="campaign_form" method="POST" action="saveCampaign">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6" >
+                                    <div class="row">
+                                        <div class="col-sm-6"><span class="text-bold-500 primary"> <input type="text" class="form-control" name="campaign_name" placeholder="Campaign Name"></span></div>
+                                        <div class="col-sm-3"><span class="text-bold-500 primary"> <input type="text" class="form-control" name="to" placeholder="To"></span></div>
+                                        <div class="col-sm-3"><span class="text-bold-500 primary"> <input type="text" class="form-control" name="from" placeholder="From"></span></div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <Div class="col-sm-6">
+                                            <span class="text-bold-500 primary"><input type="text" class="form-control" name="budget" placeholder="Budget">
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="currency" id="currency">
+                                                        <option value="USD">USD</option>
+                                                        <option value="EUR">EUR</option>
+                                                        <option value="GBP">GBP</option>
+                                                        <option value="INR">INR</option>
+                                                    </select>
+                                                </div>
+                                            </span>
+                                        </Div>
+                                        <div class="col-sm-6">
+                                            <span class="text-bold-500 primary">
+                                                <div class="form-group">
+                                                    <select class="form-control" id="exampleFormControlSelect1">
+                                                        <option>Channels</option>
+                                                        <option>Youtube</option>
+                                                        <option>Instagram</option>
+                                                        <option>Twitter</option>
+                                                    </select>
+                                                </div>
+                                            </span>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <Div class="col-sm-6">
+                                                <div class="container">
+                                                    <div class="form-group">
+                                                        <input type="file" id="filecount" multiple="multiple" max="10">
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    $('#filecount').filestyle({
+                                                        input : false,
+                                                        buttonName : 'btn-danger',
+                                                        iconName : 'glyphicon glyphicon-folder-close'
+                                                    });
+                                                </script>
+                                            </Div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <span class="text-bold-500 primary">
+                                                <div class="form-group">
+                                                    <select class="form-control" id="exampleFormControlSelect2">
+                                                        <option>Region</option>
+                                                        <option>Youtube</option>
+                                                        <option>Instagram</option>
+                                                        <option>Twitter</option>
+                                                    </select>
+                                                </div>
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <span class="text-bold-500 primary">
+                                                <div class="form-field col s7">
+                                                    <div class="slidecontainer">
+                                                        <p>Followers:</p>
+                                                        <input type="range" min="1" max="100" value="50">
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-bold-500 primary">
+                                        <div class="form-group">
+                                            <select class="form-control">
+                                                <option>Categories</option>
+                                                <option>Business Sectors</option>
+                                            </select>
+                                        </div>
+                                    </span>
+                                    <span class="text-bold-500 primary"> <input type="text" class="form-control" name="url" placeholder="Target URL"></span>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <textarea class="form-control" rows="9" id="descritpion" placeholder="Description"></textarea>
+                                    <br>
+                                    <span class="text-bold-500 primary"><input type="text" class="form-control" name="arrangement" placeholder="Arrangenment/Content Type"></span>
+                                    <br>
+                                    <span class="text-bold-500 primary"><input type="text" class="form-control" name="KPI" placeholder="KPIs"></span>
+                                </div>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="classifiedAds">
+                                <label class="form-check-label" for="classifiedAds">Post as Classified Ads</label>
+                            </div>
+                            <button type="button" class="btn btn-success"  style="margin-left: 45%">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
