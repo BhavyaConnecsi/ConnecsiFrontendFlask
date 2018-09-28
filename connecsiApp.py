@@ -353,6 +353,14 @@ def viewCampaignDetails():
     #video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
     return render_template('campaign/viewCampaignDetails.html')
 
+@connecsiApp.route('/favoriteInfluencerList')
+@is_logged_in
+def favoriteInfluencerList():
+    #connecsiObj = ConnecsiModel()
+    #region_codes = connecsiObj.get__(table_name='youtube_region_codes',STAR='*')
+    #video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
+    return render_template('partnerships/favoriteInfluencerList.html')
+
 
 # @connecsiApp.route('/saveCampaign',methods=['POST'])
 # @is_logged_in
