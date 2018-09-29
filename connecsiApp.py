@@ -361,6 +361,11 @@ def favoriteInfluencerList():
     #video_categories = connecsiObj.get__(table_name='youtube_video_categories', STAR='*')
     return render_template('partnerships/favoriteInfluencerList.html')
 
+@connecsiApp.route('/calendarView')
+@is_logged_in
+def calendarView():
+    return render_template('campaign/calendarView.html')
+
 
 # @connecsiApp.route('/saveCampaign',methods=['POST'])
 # @is_logged_in
@@ -446,4 +451,4 @@ def email():
 
 if __name__ == '__main__':
     connecsiApp.secret_key = 'connecsiSecretKey'
-    connecsiApp.run(debug=True,host='localhost',port=8090)
+    connecsiApp.run(debug=True,host='localhost',port=8080)
